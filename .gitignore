@@ -1,0 +1,9 @@
+# Godot 4 - arquivos para ignorar
+.godot/
+.import/
+export.cfg
+export_presets.cfg
+
+# SO arquivos
+.DS_Store
+Thumbs.db

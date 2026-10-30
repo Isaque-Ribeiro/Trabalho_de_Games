@@ -1,0 +1,31 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://levels/shooter/shooter_level.gd" id="1_lvl"]
+[ext_resource type="Script" path="res://levels/shooter/wave_manager.gd" id="2_wm"]
+[ext_resource type="Resource" path="res://data/waves/level_01_waves.tres" id="3_plan"]
+[ext_resource type="PackedScene" path="res://entities/player_ship/player_ship.tscn" id="4_ship"]
+[ext_resource type="PackedScene" path="res://effects/effects_spawner/effects_spawner.tscn" id="5_fx"]
+[ext_resource type="PackedScene" path="res://ui/hud/hud.tscn" id="6_hud"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu/pause_menu.tscn" id="7_pause"]
+[ext_resource type="Script" path="res://effects/starfield/starfield.gd" id="8_stars"]
+
+[node name="ShooterLevel" type="Node2D"]
+script = ExtResource("1_lvl")
+
+[node name="Starfield" type="Node2D" parent="."]
+script = ExtResource("8_stars")
+
+[node name="Projectiles" type="Node2D" parent="." groups=["projectile_container"]]
+
+[node name="WaveManager" type="Node2D" parent="."]
+script = ExtResource("2_wm")
+plan = ExtResource("3_plan")
+
+[node name="PlayerShip" parent="." instance=ExtResource("4_ship")]
+position = Vector2(960, 990)
+
+[node name="EffectsSpawner" parent="." instance=ExtResource("5_fx")]
+
+[node name="Hud" parent="." instance=ExtResource("6_hud")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_pause")]

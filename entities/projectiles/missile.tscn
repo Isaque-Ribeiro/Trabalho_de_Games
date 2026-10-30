@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://entities/projectiles/projectile.gd" id="1_proj"]
+[ext_resource type="Script" path="res://components/shape_visual/shape_visual.gd" id="2_vis"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(20, 48)
+
+[node name="Missile" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_proj")
+speed = 800.0
+damage = 999
+direction = Vector2(0, -1)
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("2_vis")
+points = PackedVector2Array(0, -26, 10, 14, 0, 6, -10, 14)
+fill_color = Color(1, 0.55, 0.2, 1)
+outline_color = Color(1, 0.9, 0.7, 1)
+outline_width = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WavePlan" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://data/wave_plan.gd" id="1_wp"]
+[ext_resource type="PackedScene" path="res://entities/enemy/enemy.tscn" id="2_en"]
+[ext_resource type="Resource" path="res://data/enemies/triangle.tres" id="3_ed"]
+[ext_resource type="PackedScene" path="res://entities/projectiles/enemy_bullet.tscn" id="4_eb"]
+
+[resource]
+script = ExtResource("1_wp")
+enemy_scene = ExtResource("2_en")
+enemy_data = ExtResource("3_ed")
+enemy_bullet_scene = ExtResource("4_eb")
+first_size = 5
+size_step = 1
+max_size = 10

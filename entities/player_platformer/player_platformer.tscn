@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://entities/player_platformer/player_platformer.gd" id="1_hero"]
+[ext_resource type="Script" path="res://components/shape_visual/shape_visual.gd" id="2_vis"]
+[ext_resource type="Script" path="res://components/health/health_component.gd" id="3_hp"]
+[ext_resource type="Script" path="res://components/hurtbox/hurtbox.gd" id="4_hb"]
+[ext_resource type="Script" path="res://components/weapon/weapon_component.gd" id="5_wp"]
+[ext_resource type="Resource" path="res://data/weapons/laser_gun.tres" id="6_laser"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(50, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(54, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spear"]
+size = Vector2(90, 24)
+
+[node name="PlayerPlatformer" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_hero")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("2_vis")
+points = PackedVector2Array(-18, -52, 18, -52, 26, -26, 26, 20, 20, 50, -20, 50, -26, 20, -26, -26)
+fill_color = Color(0.86, 0.9, 0.93, 1)
+outline_color = Color(0.1, 0.12, 0.16, 1)
+outline_width = 4.0
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(60, -5)
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_hp")
+max_health = 5
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_hb")
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_hurt")
+
+[node name="LaserGun" type="Node" parent="."]
+script = ExtResource("5_wp")
+data = ExtResource("6_laser")
+
+[node name="SpearHitbox" type="Area2D" parent="."]
+position = Vector2(85, -5)
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpearHitbox"]
+shape = SubResource("RectangleShape2D_spear")
+
+[node name="Visual" type="Node2D" parent="SpearHitbox"]
+script = ExtResource("2_vis")
+points = PackedVector2Array(-45, -4, 30, -4, 45, 0, 30, 4, -45, 4)
+fill_color = Color(0.95, 0.85, 0.5, 1)
+outline_color = Color(0.2, 0.15, 0.1, 1)
+outline_width = 2.0

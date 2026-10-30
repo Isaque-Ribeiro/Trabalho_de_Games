@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://effects/effects_spawner/effects_spawner.gd" id="1_fx"]
+[ext_resource type="PackedScene" path="res://effects/explosion/explosion_enemy.tscn" id="2_en"]
+[ext_resource type="PackedScene" path="res://effects/explosion/explosion_player.tscn" id="3_pl"]
+
+[node name="EffectsSpawner" type="Node"]
+script = ExtResource("1_fx")
+enemy_explosion = ExtResource("2_en")
+player_explosion = ExtResource("3_pl")

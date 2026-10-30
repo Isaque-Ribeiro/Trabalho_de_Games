@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/level_data.gd" id="1_ld"]
+[ext_resource type="PackedScene" path="res://levels/shooter/level_02/level_02.tscn" id="2_sc"]
+
+[resource]
+script = ExtResource("1_ld")
+display_name = "Fase 2 - Enxame"
+level_type = "shooter"
+scene = ExtResource("2_sc")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://entities/enemy/enemy.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://components/shape_visual/shape_visual.gd" id="2_vis"]
+[ext_resource type="Script" path="res://components/health/health_component.gd" id="3_hp"]
+[ext_resource type="Script" path="res://components/hurtbox/hurtbox.gd" id="4_hb"]
+[ext_resource type="Resource" path="res://data/enemies/triangle.tres" id="5_data"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(70, 56)
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_enemy")
+data = ExtResource("5_data")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("2_vis")
+points = PackedVector2Array(-40, -34, 40, -34, 0, 34)
+fill_color = Color(0.11, 0.3, 0.28, 1)
+outline_color = Color(0.82, 0.93, 0.88, 1)
+outline_width = 3.0
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_hp")
+max_health = 5
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_hb")
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_1")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/weapon_data.gd" id="1_wd"]
+[ext_resource type="PackedScene" path="res://entities/projectiles/laser_bolt.tscn" id="2_pr"]
+
+[resource]
+script = ExtResource("1_wd")
+display_name = "Laser"
+projectile_scene = ExtResource("2_pr")
+capacity = 10
+starting_ammo = -1
+reloadable = true
+reload_time = 1.2
+cooldown = 0.3
